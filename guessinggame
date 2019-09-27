@@ -1,0 +1,87 @@
+package guessgame;
+
+import java.util.Random;   //IMPORTS RANDOM VALUE
+import java.util.Scanner;  //IMPORTS SCANNER
+
+public class GuessGame {
+
+static int n = 1; //IT WILL MAKE THE VALUE OF N SAME FOR EVERY METHOD!
+
+    public static void main(String[] args) {
+        System.out.println("This is a guessing game!!!!");
+        System.out.println("----------------------------------------------------");                                     //INTRO!!
+        System.out.println("I am going to choose a number between 1-100, you try to guesss it.");
+        System.out.println("With every guess I will tell you how close you are to the answer, YOU HAVE ONLY 6 SHOTS!!");
+        System.out.println("--------------------------------------------------------------------------------------------------");
+
+        again(); //CALING METHOD "AGAIN"
+        
+        
+
+    }
+
+    
+
+    public static void again() {                                            //THIS IS A RECURING METHODE 
+        n = 1;
+        Random rand = new Random();    
+        int guess = rand.nextInt(100) + 1;   //STORES RANDOM VALUE IN GUESS!
+
+        System.out.println("I have a number in mind, start guessing!!\n");
+
+        tryAgain(guess);
+        n++;
+        tryAgain(guess);  
+        n++;
+        tryAgain(guess);               //CALLING THE METHOD 6 TIMES
+        n++;
+        tryAgain(guess);
+        n++;
+        tryAgain(guess);
+        n++;
+        tryAgain(guess);
+        n++;
+        
+        System.out.println("\n\nLets play again!");
+        again(); //TO MAKE THE METHOD RECURING, CALLING METHODE INSIDE METHODE
+
+    }
+    public static void tryAgain(int guess) {
+        Scanner input = new Scanner(System.in);
+
+        if (n <= 6) {  //WILL RUN UNTIL N IS 6
+            
+            
+
+            System.out.println("Enter your guess (or 0 to EXIT)::");
+            int number = input.nextInt();
+
+            if (number == 0) {
+                System.out.println("THANKS FOR PLAYING!!!");
+                System.exit(0); // EXITING THE PROGRAM
+
+            } else if (number == guess) {
+                System.out.println("You got it right in " + n + " guesses. ");
+                n=7; //TO COME OUT OF THE IF STATEMENT BECAUSE WE GOT THE ANSWER
+                
+            } else if (number > guess) {
+                System.out.println("too high");
+                if(n==6){
+                    System.out.println("!!!GAME OVER!!! YOU ARE OUT OF GUESSES!!\n"
+                            + "MY GUESS WAS: "+guess);
+                }
+                
+            } else if(number<guess){
+                System.out.println("too low");
+            if(n==6){
+                    System.out.println("!!!GAME OVER!!! YOU ARE OUT OF GUESSES!!\n"
+                            + "MY GUESS WAS: "+guess);
+                }
+            
+        }
+        }
+ 
+    }
+
+}
+ 
